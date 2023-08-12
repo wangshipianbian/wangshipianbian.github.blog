@@ -15,6 +15,22 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/dmego-home-page@latest/assets/css/iconfont.css">
     <link rel="apple-touch-icon" href="https://i.328888.xyz/2023/04/30/iKLWYx.jpeg">
     <link rel="icon" href="https://unpkg.com/dmego-home-page@latest/favicon.ico">
+    <style type="text/css">
+        .toggle-music-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+            transition: color 0.3s ease-in-out;
+        }
+        .toggle-music-button.music-playing {
+            color: #007bff;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,14 +48,10 @@
                             <div class="info iUp">
                                 <div class="info-back">
                                     <h2> 
-                                        
-                                            Fighting
-                                        
+                                        Fighting
                                     </h2>
                                     <p>
-                                        
-                                            2023 · 自律
-                                        
+                                        2023 · 自律
                                     </p>
                                 </div>
                             </div>
@@ -104,6 +116,10 @@
                                 </ul>
                             </nav>
                         </div>
+                        <!-- 添加按钮代码 -->
+                        <button id="toggleMusic" class="toggle-music-button">
+                            <i class="iconfont icon-volume"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -120,9 +136,36 @@
             </p>
         </div>
     </header>
+        <audio id="backgroundMusic" loop>
+        <source src="backmusic.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // 获取按钮和音乐元素
+        const toggleMusicButton = document.getElementById('toggleMusic');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        // 切换音乐播放状态
+        function toggleMusic() {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                toggleMusicButton.classList.add('music-playing');
+            } else {
+                backgroundMusic.pause();
+                toggleMusicButton.classList.remove('music-playing');
+            }
+        }
+
+        // 添加按钮点击事件
+        toggleMusicButton.addEventListener('click', toggleMusic);
+    </script>
+
     <script type="text/javascript" src="https://unpkg.com/dmego-home-page@latest/assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/dmego-home-page@latest/assets/js/main.js"></script>
     <script type="text/javascript" src="./assets/json/images.json?cb=getBingImages"></script>
 </body>
+
 </html>
 
+   
